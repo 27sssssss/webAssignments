@@ -70,3 +70,5 @@ db.initialize(process.env.MONGODB_CONN_STRING)
     );
   })
   .catch((err) => console.log("Initialization faied:", err));
+
+  module.exports = app;
