@@ -9,7 +9,7 @@ class ListingDB {
       });
       console.log("Connected to MDB");
     } catch (error) {
-      console.error("error:", error);
+      console.error("Error:", error);
       throw error;
     }
   }
@@ -43,17 +43,13 @@ class ListingDB {
         skip: (page - 1) * perPage,
         limit: parseInt(perPage),
       };
-
       let filter = {};
-
       if (name) {
         filter = { name: new RegExp(name, "i") };
       }
-
       const listings = await Listing.find(filter)
         .skip(pagination.skip)
         .limit(pagination.limit);
-
       return listings;
     } catch (error) {
       throw new Error(`Error while fetching: ${error.message}`);
