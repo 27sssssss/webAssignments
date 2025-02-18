@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-// used a script to generate the following from mongosh shell automatically
-// i am not sure if this is the correct way to do it
 const listingSchema = new mongoose.Schema(
   {
     _id: { type: String },

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Listing = require("./listingSchema");
 
 class ListingDB {
+  //init
   async initialize(connectionString) {
     try {
       await mongoose.connect(connectionString, {
@@ -13,6 +14,7 @@ class ListingDB {
       throw error;
     }
   }
+  //listingID
   async getListingById(id) {
     try {
       return await Listing.findById(id);
@@ -20,7 +22,7 @@ class ListingDB {
       throw new Error("Error fetching listing: " + error.message);
     }
   }
-
+  //updateListing
   async updateListing(id, updatedData) {
     try {
       return await Listing.findByIdAndUpdate(id, updatedData, { new: true });
@@ -28,6 +30,7 @@ class ListingDB {
       throw new Error("Error updating listing: " + error.message);
     }
   }
+  //addListing
   async addListing(listingData) {
     try {
       const listing = new Listing(listingData);
@@ -36,7 +39,7 @@ class ListingDB {
       throw new Error("Error adding listing: " + error.message);
     }
   }
-
+  //getListings
   async getListings(page = 1, perPage = 5, name = null) {
     try {
       const pagination = {
@@ -55,7 +58,7 @@ class ListingDB {
       throw new Error(`Error while fetching: ${error.message}`);
     }
   }
-
+  //delListings
   async deleteListing(id) {
     try {
       return await Listing.findByIdAndDelete(id);
